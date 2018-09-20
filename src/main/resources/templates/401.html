@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello Spring Security</title>
+    <link rel="stylesheet" href="/css/main.css" th:href="@{css/main.css}"/>
+</head>
+<body>
+    <div>
+        <div>
+            <h2>权限不够</h2>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <p>已有登录用户</p>
+            登录用户:<span sec:authentication="name"></span>
+            用户角色:<span sec:authentication="principal.authorities"></span>
+        </div>
+        <div sec:authorize="isAnonymous()">
+            <p>未有用户登录</p>
+        </div>
+        <p>
+            拒绝访问
+        </p>
+    </div>
+</body>
+</html>
