@@ -1,0 +1,12 @@
+version: '3'
+services:
+  kibana:
+#    volumes:
+#      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    container_name: cms_kinana
+    image: docker.elastic.co/kibana/kibana:6.5.4
+    environment:
+      SERVER_NAME: kibana.cms.test
+      ELASTICSEARCH_URL: http://172.253.33.190:9201/
+    ports:
+      - 5601:5601

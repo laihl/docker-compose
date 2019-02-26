@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mysql:
+    volumes:
+      - /Users/Shared/dockerData/mysql:/var/lib/mysql   #mac
+#      - /my/own/datadir:/var/lib/mysql  #windows
+    container_name: mysql-5.7
+    image: mysql:5.7.25
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - 3306:3306
