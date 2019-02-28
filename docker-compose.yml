@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 services:
   redis:
     volumes:
@@ -8,3 +8,57 @@ services:
     image: redis:4.0.13-alpine3.9
     ports:
       - 6379:6379
+  mysql:
+    volumes:
+      - /Users/Shared/dockerData/mysql:/var/lib/mysql   #mac
+    #      - /my/own/datadir:/var/lib/mysql  #windows
+    container_name: mysql-5.7
+    image: mysql:5.7.25
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - 3306:3306
+  es:
+    volumes:
+      - /Users/Shared/dockerData/elasticseach:/usr/share/elasticsearch/data #mac
+    #     -  :/data #windows
+    container_name: elasticsearch-6.5.4
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4
+    ports:
+      - 9200:9200
+  kibana:
+    container_name: local_kinana
+    image: docker.elastic.co/kibana/kibana:6.5.4
+    environment:
+      SERVER_NAME: local.kibana
+      ELASTICSEARCH_URL: http://localhost:9200/
+    ports:
+      - 5601:5601
+  cmsKibana:
+    container_name: cms_kinana
+    image: docker.elastic.co/kibana/kibana:6.5.4
+    environment:
+      SERVER_NAME: kibana.cms.test
+      ELASTICSEARCH_URL: http://172.253.33.190:9201/
+    ports:
+      - 5601:5601
+  sqlserver:
+    volumes:
+      - sqldata:/var/opt/mssql
+    container_name: sqlserver2017
+    image: microsoft/mssql-server-linux
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: "!QAZ2wsx3edc"
+#      MSSQL_PID:
+#        (default: Developer)
+#        Developer：这将使用Developer Edition运行容器（如果没有提供MSSQL_PID环境变量，这是默认值）
+#        Express：这将使用Express Edition运行容器
+#        Standard：这将使用标准版运行容器
+#        Enterprise：这将使用Enterprise Edition运行容器
+#        EnterpriseCore：这将使用Enterprise Edition Core运行容器 ：这将运行具有与PID关联的版本的容器
+    ports:
+      - 1433:1433
+  #
+volumes:
+  sqldata:
