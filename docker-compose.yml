@@ -10,8 +10,8 @@ services:
       - 6379:6379
   mysql:
     volumes:
-      - /Users/Shared/dockerData/mysql:/var/lib/mysql   #mac
-    #      - /my/own/datadir:/var/lib/mysql  #windows
+#      - /Users/Shared/dockerData/mysql:/var/lib/mysql   #mac
+          - /dockerData/mysql:/var/lib/mysql  #windows
     container_name: mysql-5.7
     image: mysql:5.7.25
     environment:
@@ -59,6 +59,18 @@ services:
 #        EnterpriseCore：这将使用Enterprise Edition Core运行容器 ：这将运行具有与PID关联的版本的容器
     ports:
       - 1433:1433
+  tsy:
+    container_name: tsy_server
+    image: edurekain/php5.5apache:latest
+
+    ports:
+      - 80:80
+#      - 443:443
+    volumes:
+      - /s/docker/tsy/php.ini:/etc/php5/apache2/php.ini:ro
+#       /s/docker/tsy/apache/conf/:/usr/local/apache2/conf/
+      - /s/docker/tsy/www/:/var/www/html
   #
+
 volumes:
   sqldata:
