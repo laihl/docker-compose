@@ -1,5 +1,13 @@
 version: '3.2'
 services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:latest
+    ports:
+      - 4369:4369
+      - 5672:5672
+      - 5671:5671
+      - 25672:25672
   redis:
     volumes:
       - /Users/Shared/dockerData/redis:/data #mac
