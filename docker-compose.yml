@@ -79,6 +79,17 @@ services:
 #       /s/docker/tsy/apache/conf/:/usr/local/apache2/conf/
       - /s/docker/tsy/www/:/var/www/html
   #
+  gitlabs:
+    container_name: gitlabs
+    image: store/gitlab/gitlab-ce:10.2.4-ce.0
+    ports:
+#      - 8443:443
+#      - 8022:22
+      - 8079:80
+    volumes:
+      - /Users/Shared/dockerData/gitlabs/etc/:/etc/gitlab
+      - /Users/Shared/dockerData/gitlabs/log/:/var/log/gitlab
+      - /Users/Shared/dockerData/gitlabs/opt:/var/opt/gitlab
 
 volumes:
   sqldata:
