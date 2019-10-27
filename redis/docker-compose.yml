@@ -3,7 +3,7 @@ services:
   redis:
     volumes:
       - /Users/Shared/dockerData/redis:/data #mac
-    #     -  :/data #windows
+    #     - /d/dockerData/redis :/data #windows
     container_name: redis-4.0.13
     image: redis:4.0.13-alpine3.9
     ports:
