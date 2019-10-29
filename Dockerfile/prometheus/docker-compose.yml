@@ -4,7 +4,7 @@ services:
     volumes:
       - ./prometheus.yml:/app/prometheus.yml
     container_name: prometheus
-    image: prometheus-server:2.13
+    image: prom/server:2.13
     ports:
       - 9090:9090
   grafana:
@@ -14,9 +14,8 @@ services:
       - 3000:3000
   testblack:
     container_name: testblack
-    image: testblackbox:latest
+    image: prom/exporter-black:0.15.1
     ports:
       - 9115:9115
-      - 8080:8080
     volumes:
-      - ./:/root/
+      - ./blackbox.yml:/app/blackbox.yml

@@ -2,8 +2,9 @@ version: '3'
 services:
   mysql:
     volumes:
-      # - /Users/Shared/dockerData/mysql:/var/lib/mysql   #mac
-     - /d/dockerData/mysql:/var/lib/mysql  #windows
+      - /Users/Shared/dockerData/mysql:/var/lib/mysql   #mac
+    #  - /d/dockerData/mysql:/var/lib/mysql  #windows
+      - ./docker.cnf:/etc/mysql/conf.d/docker.cnf
     container_name: mysql-5.7
     image: mysql:5.7.25
     environment:

@@ -1,10 +1,20 @@
 modules:
   http_2xx:
     prober: http
-  http_post_2xx:
-    prober: http
+    timeout: 10s
     http:
+      preferred_ip_protocol: "ip4" ##如果http监测是使用ipv4 就要写上，目前国内使用ipv6很少。
+  http_post_2xx_query: ##用于post请求使用的模块）由于每个接口传参不同 可以定义多个module 用于不同接口（例如此命名为http_post_2xx_query 用于监测接口
+    prober: http
+    timeout: 15s
+    http:
+      preferred_ip_protocol: "ip4" ##使用ipv4
       method: POST
+      # headers:
+      #   Origin: http://localhost:8080
+        # Content-Type: application/json ##header头
+      # body: 'startTime:2018-09-23 00:00:00
+      #         endTime:2999-01-01 23:59:59' ##传参
   tcp_connect:
     prober: tcp
   pop3s_banner:

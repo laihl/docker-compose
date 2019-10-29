@@ -24,18 +24,20 @@ scrape_configs:
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
-    - targets: ['localhost:9090']
+    - targets: ['10.55.8.253:9090']
   - job_name: 'blackbox'
     metrics_path: /probe
     params:
-      module: [http_2xx]  # Look for a HTTP 200 response.
+      module: [http_post_2xx_query]  # Look for a HTTP 200 response.
     static_configs:
       - targets:
-        - http://192.168.0.111:8080 # Target to probe with http on port 8080.
+        - http://196.55.12.118:8080/batch-admin/historyquery/getOperHistoryInfo # Target to probe with http on port 8080.
+        labels:
+          group: '分布式调度操作平台监控'
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: 192.168.0.111:9115  # The blackbox exporter's real hostname:port.
+        replacement: 10.55.8.253:9115  # The blackbox exporter's real hostname:port.

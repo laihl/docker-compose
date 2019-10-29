@@ -1,4 +1,4 @@
-FROM anapsix/alpine-java:8u191b12_server-jre
+FROM go:1.10
 #FROM alpine:3.10.3 
   
 # 修改源
@@ -10,14 +10,12 @@ RUN apk update && \
   apk add --no-cache ca-certificates && \
   apk add --no-cache curl bash tree tzdata go && \
   cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
-  mkdir /app
+  mkdir -p /app
 
 #普罗米修斯包安装
 ADD ./blackbox_exporter-0.15.1.linux-amd64.tar.gz /app
 RUN cp /app/blackbox_exporter-0.15.1.linux-amd64/blackbox.yml /app
-#安装包
-ADD ./jpa-for-tsy-0.0.1-SNAPSHOT.jar /app
 
-EXPOSE 9115 8080
+EXPOSE 9115
 WORKDIR /app/blackbox_exporter-0.15.1.linux-amd64
 ENTRYPOINT ./blackbox_exporter --config.file=/app/blackbox.yml
