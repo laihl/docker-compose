@@ -1,0 +1,10 @@
+version: '3'
+services:
+  tomcat:
+    volumes:
+      - ./:/root #mac
+    #     - /d/dockerData/redis :/data #windows
+    container_name: tomcat7
+    image: tomcat:7.0.94-jre8-alpine
+    ports:
+      - 8080:8080

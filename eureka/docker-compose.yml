@@ -1,0 +1,10 @@
+version: '3'
+services:
+  eureka:
+    volumes:
+      - ./:/app/   #mac
+    container_name: eureka
+    image: jdk:1.8
+    entrypoint: "java -jar /app/demo-0.0.1-SNAPSHOT.jar "
+    ports:
+      - 8080:8080

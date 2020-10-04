@@ -1,0 +1,8 @@
+kubectl create secret docker-registryharbortest--namespace=kube-system\
+
+--docker-server=10.142.21.113--docker-username=cm-test\
+
+--docker-password=Dcos1234--docker-email=chenmiao@cmss.chinamobile.com
+
+
+kubectl get secret docker-registry --namespace=kube-system -o yaml

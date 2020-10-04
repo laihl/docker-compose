@@ -8,24 +8,24 @@ services:
       - 5672:5672
       - 5671:5671
       - 25672:25672
-  redis:
-    volumes:
-      - /Users/Shared/dockerData/redis:/data #mac
-    #     -  :/data #windows
-    container_name: redis-4.0.13
-    image: redis:4.0.13-alpine3.9
-    ports:
-      - 6379:6379
-  mysql:
-    volumes:
-#      - /Users/Shared/dockerData/mysql:/var/lib/mysql   #mac
-          - /dockerData/mysql:/var/lib/mysql  #windows
-    container_name: mysql-5.7
-    image: mysql:5.7.25
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234
-    ports:
-      - 3306:3306
+  # redis:
+  #   volumes:
+  #     - /Users/Shared/dockerData/redis:/data #mac
+  #   #     -  :/data #windows
+  #   container_name: redis-4.0.13
+  #   image: redis:4.0.13-alpine3.9
+  #   ports:
+  #     - 6379:6379
+  # mysql:
+  #   volumes:
+  #    - /Users/Shared/dockerData/mysql:/var/lib/mysql   #mac
+  #         # - /dockerData/mysql:/var/lib/mysql  #windows
+  #   container_name: mysql-5.7
+  #   image: mysql:5.7.25
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 1234
+  #   ports:
+  #     - 3306:3306
   es:
     volumes:
       - /Users/Shared/dockerData/elasticseach:/usr/share/elasticsearch/data #mac
