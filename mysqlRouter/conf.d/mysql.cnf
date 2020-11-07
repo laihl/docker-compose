@@ -1,0 +1,6 @@
+[client]
+default-character-set=utf8
+socket=/home/work/mysql/run/mysql.sock
+
+[mysqld_safe]
+log-error=/home/work/data/err.log
