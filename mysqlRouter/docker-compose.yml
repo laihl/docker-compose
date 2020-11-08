@@ -1,18 +1,58 @@
 version: '3.1'
-
 services:
-
-  db:
+  corebanking1:
     image: mysql:8.0.19
+    container_name: corebanking1
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     volumes:
-      - ./:/root
+       - ./:/root
+       - ./config/my1.cnf:/etc/my.cnf
+       - ./data/MGR1/zxdata:/zxdata
+       - ./data/MGR1/zxlog:/zxlog
+       - ./data/MGR1/zxdata/mysql-files:/var/lib/mysql-files
     environment:
-      MYSQL_ROOT_PASSWORD: example
-
-  adminer:
-    image: adminer
-    restart: always
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test1
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
     ports:
-      - 8080:8080
+      - 3311:3311
+
+  corebanking2:
+    image: mysql:8.0.19
+    container_name: corebanking2
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+       - ./:/root
+       - ./config/my2.cnf:/etc/my.cnf
+       - ./data/MGR2/zxdata:/zxdata
+       - ./data/MGR2/zxlog:/zxlog
+       - ./data/MGR2/zxdata/mysql-files:/var/lib/mysql-files
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test1
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+    ports:
+      - 3312:3311
+
+  corebanking3:
+    image: mysql:8.0.19
+    container_name: corebanking3
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+       - ./:/root
+       - ./config/my3.cnf:/etc/my.cnf
+       - ./data/MGR3/zxdata:/zxdata
+       - ./data/MGR3/zxlog:/zxlog
+       - ./data/MGR3/zxdata/mysql-files:/var/lib/mysql-files
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test1
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+    ports:
+      - 3313:3311
