@@ -3,3 +3,6 @@
 .idea
 /log
 *.jar
+./mysqlRouter/data/MGR1
+./mysqlRouter/data/MGR2
+./mysqlRouter/data/MGR3
